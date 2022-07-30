@@ -3,7 +3,6 @@ const { Schema } = mongoose;
 
 const BrandSchema = new Schema({
   name: String,
-  cars: [{ type: Schema.Types.ObjectId, ref: "Car" }],
 });
 
 BrandSchema.virtual("url").get(function () {
