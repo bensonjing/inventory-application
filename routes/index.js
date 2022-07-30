@@ -7,8 +7,3 @@ router.get("/", function (req, res, next) {
 });
 
 module.exports = router;
-
-// routes needed
-// car/, brand/, category/
-// .../create
-// .../:id/, .../:id/update, .../:id/delete
