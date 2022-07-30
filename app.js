@@ -6,6 +6,7 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 import carRouter from "./routes/car";
+import brandRouter from "./routes/brand";
 
 var app = express();
 
@@ -21,6 +22,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/car", carRouter);
+app.use("/brand", brandRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
