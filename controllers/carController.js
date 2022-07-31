@@ -11,8 +11,16 @@ export function car_list(req, res, next) {
     });
 }
 
-export function car_detail(req, res) {
-  res.send("NOT IMPLEMENTED: Car Detail: " + req.params.id);
+export function car_detail(req, res, next) {
+  Car.findById(req.params.id)
+    .populate("brand")
+    .populate("category")
+    .exec((err, result) => {
+      if (err) {
+        return next(err);
+      }
+      res.render("car_detail", { title: result.name, car: result });
+    });
 }
 
 export function car_create_get(req, res) {

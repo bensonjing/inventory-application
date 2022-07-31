@@ -1,0 +1,11 @@
+extend layout 
+
+block content 
+  h1= title 
+
+  p #[strong Price: ] #{car.price} 
+  p #[strong Brand: ] 
+    a(href=car.brand.url) #{car.brand.name}
+  p #[strong Category: ]
+    a(href=car.category.url) #{car.category.name}
+    
