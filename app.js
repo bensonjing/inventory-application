@@ -11,6 +11,14 @@ import categoryRouter from "./routes/category";
 
 var app = express();
 
+// setup mongoose connection
+import mongoose from "mongoose";
+const mongoDB =
+  "mongodb+srv://BensonJing:Benson0523@cluster0.t7du9kk.mongodb.net/inventory_application?retryWrites=true&w=majority";
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connection error: "));
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");

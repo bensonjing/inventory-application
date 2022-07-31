@@ -9,4 +9,6 @@ BrandSchema.virtual("url").get(function () {
   return "/brand/" + this._id;
 });
 
-export default mongoose.model("Brand", BrandSchema);
+const Brand = mongoose.model("Brand", BrandSchema);
+
+export default Brand;
