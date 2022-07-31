@@ -1,7 +1,17 @@
 import Category from "../models/category";
 
-export function category_list(req, res) {
-  res.send("NOT IMPLEMENTED: Category List");
+export function category_list(req, res, next) {
+  Category.find()
+    .sort("name")
+    .exec((err, result) => {
+      if (err) {
+        return next(err);
+      }
+      res.render("category_list", {
+        title: "Category List",
+        category_list: result,
+      });
+    });
 }
 
 export function category_detail(req, res) {
