@@ -1,0 +1,12 @@
+extend layout 
+
+block content 
+  h1= title 
+
+  ul 
+    each car in car_list 
+      li 
+        a(href=car.url) #{car.name}
+
+    else 
+      p There are no cars

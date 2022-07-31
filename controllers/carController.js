@@ -1,7 +1,14 @@
 import Car from "../models/car";
 
-export function car_list(req, res) {
-  res.send("NOT IMPLEMENTED: Car List");
+export function car_list(req, res, next) {
+  Car.find()
+    .sort("brand")
+    .exec((err, result) => {
+      if (err) {
+        return next(err);
+      }
+      res.render("car_list", { title: "Car List", car_list: result });
+    });
 }
 
 export function car_detail(req, res) {
