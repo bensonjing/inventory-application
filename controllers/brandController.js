@@ -29,7 +29,7 @@ export function brand_detail(req, res, next) {
         return next(err);
       }
       if (result.brand == null) {
-        const err = new Error("Book not found");
+        const err = new Error("Brand not found");
         err.status = 404;
         return next(err);
       }

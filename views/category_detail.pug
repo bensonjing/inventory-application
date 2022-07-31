@@ -1,0 +1,16 @@
+extend layout 
+
+block content 
+  h1= title 
+
+  p #[strong Description: ]  #{category.description} 
+
+  h4 Cars: 
+
+  ul 
+    each car in cars 
+      li 
+        a(href=car.url) #{car.name}
+
+    else 
+      p There are no cars in this category

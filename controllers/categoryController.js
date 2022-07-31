@@ -1,4 +1,7 @@
+import async from "async";
+
 import Category from "../models/category";
+import Car from "../models/car";
 
 export function category_list(req, res, next) {
   Category.find()
@@ -14,8 +17,32 @@ export function category_list(req, res, next) {
     });
 }
 
-export function category_detail(req, res) {
-  res.send("NOT IMPLEMENTED: Category Detail: " + req.params.id);
+export function category_detail(req, res, next) {
+  async.parallel(
+    {
+      category(callback) {
+        Category.findById(req.params.id).exec(callback);
+      },
+      cars(callback) {
+        Car.find({ category: req.params.id }).exec(callback);
+      },
+    },
+    (err, result) => {
+      if (err) {
+        return next(err);
+      }
+      if (result.category == null) {
+        const err = new Error("Category Not Found");
+        err.status = 404;
+        next(err);
+      }
+      res.render("category_detail", {
+        title: result.category.name,
+        category: result.category,
+        cars: result.cars,
+      });
+    }
+  );
 }
 
 export function category_create_get(req, res) {
